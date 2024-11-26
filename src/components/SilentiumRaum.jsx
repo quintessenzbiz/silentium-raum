@@ -9,7 +9,7 @@ const SilentiumRaum = () => {
   const [isDarkMode, setIsDarkMode] = useState(true);
   const [soundType, setSoundType] = useState('none');
   const [waveform, setWaveform] = useState('sine');
-  const [volume, setVolume] = useState(0.01); // statt 0.1
+  const [volume, setVolume] = useState(0.01);
   const [timer, setTimer] = useState(0);
   const [isActive, setIsActive] = useState(false);
   const [showArchivInfo, setShowArchivInfo] = useState(false);
@@ -42,10 +42,10 @@ const SilentiumRaum = () => {
   }, []);
 
   useEffect(() => {
-    if (gainNode) {
-      gainNode.gain.setValueAtTime(volume, audioContext.currentTime);
+    if (gainNode && audioContext) {
+      gainNode.gain.value = volume;
     }
-  }, [volume]);
+  }, [volume, gainNode, audioContext]);
 
   useEffect(() => {
     if (!activeWaveforms.includes(waveform)) {
@@ -56,6 +56,16 @@ const SilentiumRaum = () => {
       setSoundType('none');
     }
   }, [activeWaveforms]);
+
+  useEffect(() => {
+    let interval;
+    if (isActive) {
+      interval = setInterval(() => {
+        setTimer((timer) => timer + 1);
+      }, 1000);
+    }
+    return () => clearInterval(interval);
+  }, [isActive]);
 
   const toggleWaveform = (type) => {
     setActiveWaveforms(prev => {
@@ -82,14 +92,20 @@ const SilentiumRaum = () => {
     }
 
     const newOscillator = audioContext.createOscillator();
+    const newGainNode = audioContext.createGain();
+    newGainNode.gain.value = volume; // Hier setzen wir die initiale Lautstärke
+    
     newOscillator.type = waveform;
     newOscillator.frequency.setValueAtTime(parseFloat(frequency), audioContext.currentTime);
     
-    newOscillator.connect(gainNode);
+    newOscillator.connect(newGainNode);
+    newGainNode.connect(audioContext.destination);
     newOscillator.start();
+    
     setOscillator(newOscillator);
+    setGainNode(newGainNode);
     setSoundType(frequency);
-  };
+};
 
   const changeWaveform = (newWaveform) => {
     if (!activeWaveforms.includes(newWaveform)) return;
@@ -145,13 +161,15 @@ const SilentiumRaum = () => {
             <div className="flex items-center gap-4">
               <Volume2 className="h-5 w-5 flex-shrink-0" />
               <Slider
-  defaultValue={[volume * 100]}
+  defaultValue={[1]}
   onValueChange={(value) => {
-    setVolume(value[0] / 100);
+    const newVolume = value[0] / 500; // Teilen durch einen größeren Wert für feinere Kontrolle
+    setVolume(newVolume);
     if (gainNode) {
-      gainNode.gain.setValueAtTime(value[0] / 100, audioContext.currentTime);
+      gainNode.gain.setValueAtTime(newVolume, audioContext.currentTime);
     }
   }}
+  min={0}
   max={100}
   step={1}
   className="flex-1"
@@ -295,4 +313,4 @@ const SilentiumRaum = () => {
   );
 };
 
-export default SilentiumRaum;
+export { SilentiumRaum as default };
