@@ -4,7 +4,6 @@ import { Button } from '../components/ui/button';
 import { Moon, Sun, Volume2, BookOpen, Ban, Square, Triangle, CircleDot, ChevronUp, ExternalLink } from 'lucide-react';
 import { Alert, AlertDescription, AlertTitle } from '../components/ui/alert';
 
-// Vordefinierte Lautstärken
 const volumeLevels = {
   low: 0.0005,
   medium: 0.001,
@@ -137,10 +136,10 @@ const SilentiumRaum = () => {
     <div className={`min-h-screen p-4 pb-20 relative ${isDarkMode ? 'bg-slate-900' : 'bg-slate-50'}`}>
       <Card className={`w-full max-w-2xl mx-auto mt-10 mb-16 ${isDarkMode ? 'bg-slate-800 text-white' : 'bg-white text-slate-900'}`}>
         <CardHeader className="space-y-4">
-          <CardTitle className="text-center text-4xl font-bold">SILENTIUM</CardTitle>
+          <CardTitle className="text-center text-4xl font-normal">SILENTIUM</CardTitle>
           <div className="space-y-2">
-            <p className="text-center text-xl font-medium">Open Space of Silence, Peace and Inner Harmony</p>
-            <p className="text-center text-md opacity-85">A peaceful place for Meditation, Relaxation and Deep Grounding!</p>
+            <p className="text-center text-xl font-normal">Open Space of Silence, Peace and Inner Harmony</p>
+            <p className="text-center text-md font-light opacity-85">A peaceful place for Meditation, Relaxation and Deep Grounding!</p>
           </div>
         </CardHeader>
         <CardContent className="space-y-6">
@@ -241,7 +240,7 @@ const SilentiumRaum = () => {
               >
                 <div className="text-center">
                   <div className="font-bold">{freq.freq}Hz</div>
-                  <div className="text-sm">{freq.name}</div>
+                  <div className="text-sm font-normal">{freq.name}</div>
                 </div>
               </Button>
             ))}
@@ -321,6 +320,20 @@ const SilentiumRaum = () => {
               <ExternalLink className="ml-1 h-3 w-3" />
             </a>
           </p>
+          <div className="mt-2 mb-2">
+            <a 
+              href="https://ko-fi.com/opensilentium" 
+              target="_blank" 
+              rel="noopener noreferrer" 
+              className={`inline-flex items-center px-4 py-2 rounded-md ${
+                isDarkMode 
+                  ? 'bg-blue-600 text-white hover:bg-blue-700' 
+                  : 'bg-blue-500 text-white hover:bg-blue-600'
+              }`}
+            >
+              Support on Ko-fi
+            </a>
+          </div>
           <p className={`text-xs mt-1 ${isDarkMode ? 'text-slate-400' : 'text-slate-600'}`}>
             © {new Date().getFullYear()} Quintessenz. All rights reserved.
           </p>
