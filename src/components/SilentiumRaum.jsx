@@ -9,7 +9,7 @@ const SilentiumRaum = () => {
   const [isDarkMode, setIsDarkMode] = useState(true);
   const [soundType, setSoundType] = useState('none');
   const [waveform, setWaveform] = useState('sine');
-  const [volume, setVolume] = useState(0.1);
+  const [volume, setVolume] = useState(0.01);
   const [timer, setTimer] = useState(0);
   const [isActive, setIsActive] = useState(false);
   const [showArchivInfo, setShowArchivInfo] = useState(false);
@@ -145,12 +145,12 @@ const SilentiumRaum = () => {
             <div className="flex items-center gap-4">
               <Volume2 className="h-5 w-5 flex-shrink-0" />
               <Slider
-                value={[volume * 100]}
-                onValueChange={(value) => setVolume(value[0] / 100)}
-                max={100}
-                step={1}
-                className="flex-1"
-              />
+  value={[volume * 100]}
+  onValueChange={(value) => setVolume(value[0] / 1000)}
+  max={100}
+  step={1}
+  className="flex-1"
+/>
               <span className="w-12 text-right">{Math.round(volume * 100)}%</span>
             </div>
           </div>
