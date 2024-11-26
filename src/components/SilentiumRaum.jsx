@@ -1,15 +1,21 @@
 import React, { useState, useEffect } from 'react';
 import { Card, CardHeader, CardTitle, CardContent } from '../components/ui/card';
 import { Button } from '../components/ui/button';
-import { Moon, Sun, Volume2, VolumeX, BookOpen, Ban, Square, Triangle, CircleDot, ChevronUp, ExternalLink } from 'lucide-react';
+import { Moon, Sun, Volume2, BookOpen, Ban, Square, Triangle, CircleDot, ChevronUp, ExternalLink } from 'lucide-react';
 import { Alert, AlertDescription, AlertTitle } from '../components/ui/alert';
-import { Slider } from '../components/ui/slider';
+
+// Vordefinierte Lautstärken
+const volumeLevels = {
+  low: 0.0005,
+  medium: 0.001,
+  high: 0.002
+};
 
 const SilentiumRaum = () => {
   const [isDarkMode, setIsDarkMode] = useState(true);
   const [soundType, setSoundType] = useState('none');
   const [waveform, setWaveform] = useState('sine');
-  const [volume, setVolume] = useState(0.01);
+  const [volume, setVolume] = useState(volumeLevels.low);
   const [timer, setTimer] = useState(0);
   const [isActive, setIsActive] = useState(false);
   const [showArchivInfo, setShowArchivInfo] = useState(false);
@@ -35,6 +41,7 @@ const SilentiumRaum = () => {
     if (typeof window !== 'undefined') {
       const ctx = new (window.AudioContext || window.webkitAudioContext)();
       const gain = ctx.createGain();
+      gain.gain.value = volume;
       gain.connect(ctx.destination);
       setAudioContext(ctx);
       setGainNode(gain);
@@ -43,19 +50,9 @@ const SilentiumRaum = () => {
 
   useEffect(() => {
     if (gainNode && audioContext) {
-      gainNode.gain.value = volume;
+      gainNode.gain.setValueAtTime(volume, audioContext.currentTime);
     }
   }, [volume, gainNode, audioContext]);
-
-  useEffect(() => {
-    if (!activeWaveforms.includes(waveform)) {
-      if (oscillator) {
-        oscillator.stop();
-        setOscillator(null);
-      }
-      setSoundType('none');
-    }
-  }, [activeWaveforms]);
 
   useEffect(() => {
     let interval;
@@ -66,19 +63,6 @@ const SilentiumRaum = () => {
     }
     return () => clearInterval(interval);
   }, [isActive]);
-
-  const toggleWaveform = (type) => {
-    setActiveWaveforms(prev => {
-      if (prev.includes(type)) {
-        if (type === waveform) {
-          const nextActive = prev.filter(w => w !== type)[0] || 'none';
-          setWaveform(nextActive);
-        }
-        return prev.filter(w => w !== type);
-      }
-      return [...prev, type];
-    });
-  };
 
   const startFrequency = (frequency) => {
     if (oscillator) {
@@ -93,7 +77,7 @@ const SilentiumRaum = () => {
 
     const newOscillator = audioContext.createOscillator();
     const newGainNode = audioContext.createGain();
-    newGainNode.gain.value = volume; // Hier setzen wir die initiale Lautstärke
+    newGainNode.gain.value = volume;
     
     newOscillator.type = waveform;
     newOscillator.frequency.setValueAtTime(parseFloat(frequency), audioContext.currentTime);
@@ -105,7 +89,7 @@ const SilentiumRaum = () => {
     setOscillator(newOscillator);
     setGainNode(newGainNode);
     setSoundType(frequency);
-};
+  };
 
   const changeWaveform = (newWaveform) => {
     if (!activeWaveforms.includes(newWaveform)) return;
@@ -113,6 +97,19 @@ const SilentiumRaum = () => {
     if (soundType !== 'none') {
       startFrequency(soundType);
     }
+  };
+
+  const toggleWaveform = (type) => {
+    setActiveWaveforms(prev => {
+      if (prev.includes(type)) {
+        if (type === waveform) {
+          const nextActive = prev.filter(w => w !== type)[0] || 'none';
+          setWaveform(nextActive);
+        }
+        return prev.filter(w => w !== type);
+      }
+      return [...prev, type];
+    });
   };
 
   const formatTime = (seconds) => {
@@ -160,21 +157,41 @@ const SilentiumRaum = () => {
           <div className={`p-4 rounded-lg ${isDarkMode ? 'bg-slate-700' : 'bg-slate-100'}`}>
             <div className="flex items-center gap-4">
               <Volume2 className="h-5 w-5 flex-shrink-0" />
-              <Slider
-  defaultValue={[1]}
-  onValueChange={(value) => {
-    const newVolume = value[0] / 500; // Teilen durch einen größeren Wert für feinere Kontrolle
-    setVolume(newVolume);
-    if (gainNode) {
-      gainNode.gain.setValueAtTime(newVolume, audioContext.currentTime);
-    }
-  }}
-  min={0}
-  max={100}
-  step={1}
-  className="flex-1"
-/>
-              <span className="w-12 text-right">{Math.round(volume * 100)}%</span>
+              <div className="flex gap-2 flex-1 justify-center">
+                <Button
+                  onClick={() => {
+                    setVolume(volumeLevels.low);
+                    if (gainNode) {
+                      gainNode.gain.setValueAtTime(volumeLevels.low, audioContext.currentTime);
+                    }
+                  }}
+                  className={getButtonClass(volume === volumeLevels.low)}
+                >
+                  Low
+                </Button>
+                <Button
+                  onClick={() => {
+                    setVolume(volumeLevels.medium);
+                    if (gainNode) {
+                      gainNode.gain.setValueAtTime(volumeLevels.medium, audioContext.currentTime);
+                    }
+                  }}
+                  className={getButtonClass(volume === volumeLevels.medium)}
+                >
+                  Medium
+                </Button>
+                <Button
+                  onClick={() => {
+                    setVolume(volumeLevels.high);
+                    if (gainNode) {
+                      gainNode.gain.setValueAtTime(volumeLevels.high, audioContext.currentTime);
+                    }
+                  }}
+                  className={getButtonClass(volume === volumeLevels.high)}
+                >
+                  High
+                </Button>
+              </div>
             </div>
           </div>
 
