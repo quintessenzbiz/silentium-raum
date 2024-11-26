@@ -1,5 +1,5 @@
 import * as React from "react"
-import { cn } from "@/lib/utils"
+import { cn } from "../../lib/utils"
 
 const Slider = React.forwardRef(({ className, ...props }, ref) => (
   <div className="relative flex w-full touch-none select-none items-center">

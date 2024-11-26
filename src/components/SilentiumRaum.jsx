@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from 'react';
-import { Card, CardHeader, CardTitle, CardContent } from '@/components/ui/card';
-import { Button } from '@/components/ui/button';
+import { Card, CardHeader, CardTitle, CardContent } from '../components/ui/card';
+import { Button } from '../components/ui/button';
 import { Moon, Sun, Volume2, VolumeX, BookOpen, Ban, Square, Triangle, CircleDot, ChevronUp, ExternalLink } from 'lucide-react';
-import { Alert, AlertDescription, AlertTitle } from '@/components/ui/alert';
-import { Slider } from '@/components/ui/slider';
+import { Alert, AlertDescription, AlertTitle } from '../components/ui/alert';
+import { Slider } from '../components/ui/slider';
 
 const SilentiumRaum = () => {
   const [isDarkMode, setIsDarkMode] = useState(true);
