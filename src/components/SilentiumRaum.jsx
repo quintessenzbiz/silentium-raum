@@ -24,16 +24,16 @@ const SilentiumRaum = () => {
   const [activeWaveforms, setActiveWaveforms] = useState(['sine', 'square', 'triangle', 'sawtooth']);
 
   const frequencies = [
-    { freq: '432', name: 'Natural Freq.', desc: 'Harmonizes with the natural vibration of the universe' },
+    { freq: '432', name: 'Natural Freq', desc: 'Harmonizes with the natural vibration of the universe' },
     { freq: '528', name: 'Healing Freq', desc: 'Known for its regenerative properties' },
     { freq: '639', name: 'Heart Freq', desc: 'Promotes connection and harmony' }
   ];
 
   const waveforms = [
-    { type: 'sine', name: 'Sine', icon: CircleDot },
-    { type: 'square', name: 'Square', icon: Square },
-    { type: 'triangle', name: 'Triangle', icon: Triangle },
-    { type: 'sawtooth', name: 'Sawtooth', icon: ChevronUp }
+    { type: 'sine', name: '', icon: CircleDot },
+    { type: 'square', name: '', icon: Square },
+    { type: 'triangle', name: '', icon: Triangle },
+    { type: 'sawtooth', name: '', icon: ChevronUp }
   ];
 
   useEffect(() => {
