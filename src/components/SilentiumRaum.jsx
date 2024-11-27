@@ -24,9 +24,9 @@ const SilentiumRaum = () => {
   const [activeWaveforms, setActiveWaveforms] = useState(['sine', 'square', 'triangle', 'sawtooth']);
 
   const frequencies = [
-    { freq: '432', name: 'Natural Frequency', desc: 'Harmonizes with the natural vibration of the universe' },
-    { freq: '528', name: 'Healing Frequency', desc: 'Known for its regenerative properties' },
-    { freq: '639', name: 'Heart Frequency', desc: 'Promotes connection and harmony' }
+    { freq: '432', name: 'Natural Freq.', desc: 'Harmonizes with the natural vibration of the universe' },
+    { freq: '528', name: 'Healing Freq', desc: 'Known for its regenerative properties' },
+    { freq: '639', name: 'Heart Freq', desc: 'Promotes connection and harmony' }
   ];
 
   const waveforms = [
@@ -147,10 +147,10 @@ const SilentiumRaum = () => {
 
       <Card className={`w-full max-w-2xl mx-auto mt-10 mb-16 relative z-10 ${isDarkMode ? 'bg-slate-800 text-white' : 'bg-white text-slate-900'}`}>
         <CardHeader className="space-y-4">
-          <CardTitle className="text-center text-4xl font-light">SILENTIUM</CardTitle>
+          <CardTitle className="text-center text-4xl font-light">SILENTIUM | The Silent Movement</CardTitle>
           <div className="space-y-2">
             <p className="text-center text-xl font-light">Open Space of Silence, Peace and Inner Harmony</p>
-            <p className="text-center text-md font-extralight opacity-85">A peaceful place for Meditation, Relaxation and Deep Grounding!</p>
+            <p className="text-center text-md font-extralight opacity-85">A peaceful place for Meditation, Relaxation, Rest and Deep Grounding!</p>
           </div>
         </CardHeader>
         <CardContent className="space-y-6">
