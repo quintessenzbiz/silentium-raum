@@ -30,10 +30,10 @@ const SilentiumRaum = () => {
   ];
 
   const waveforms = [
-    { type: 'sine', name: '', icon: CircleDot },
-    { type: 'square', name: '', icon: Square },
-    { type: 'triangle', name: '', icon: Triangle },
-    { type: 'sawtooth', name: '', icon: ChevronUp }
+    { type: 'sine', name: 'Sine', icon: CircleDot },
+    { type: 'square', name: 'Square', icon: Square },
+    { type: 'triangle', name: 'Triangle', icon: Triangle },
+    { type: 'sawtooth', name: 'Sawtooth', icon: ChevronUp }
   ];
 
   useEffect(() => {
@@ -147,10 +147,10 @@ const SilentiumRaum = () => {
 
       <Card className={`w-full max-w-2xl mx-auto mt-10 mb-16 relative z-10 ${isDarkMode ? 'bg-slate-800 text-white' : 'bg-white text-slate-900'}`}>
         <CardHeader className="space-y-4">
-          <CardTitle className="text-center text-4xl font-light">SILENTIUM | The Silent Movement</CardTitle>
+          <CardTitle className="text-center text-4xl font-light">SILENTIUM</CardTitle>
           <div className="space-y-2">
             <p className="text-center text-xl font-light">Open Space of Silence, Peace and Inner Harmony</p>
-            <p className="text-center text-md font-extralight opacity-85">A peaceful place for Meditation, Relaxation, Rest and Deep Grounding!</p>
+            <p className="text-center text-md font-extralight opacity-85">A peaceful place for Meditation, Relaxation, Rest and Deep Grounding.</p>
           </div>
         </CardHeader>
         <CardContent className="space-y-6">
