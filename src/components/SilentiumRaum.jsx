@@ -134,8 +134,9 @@ const SilentiumRaum = () => {
 
   return (
     <div className={`min-h-screen p-4 pb-20 relative ${isDarkMode ? 'bg-slate-900' : 'bg-slate-50'}`}>
+
 {/* Wellenhintergrund */}
-<svg className="fixed inset-0 w-full h-full z-0 opacity-5" viewBox="0 0 1440 320" preserveAspectRatio="none">
+<svg className="fixed inset-0 w-full h-full z-0 opacity-5" viewBox="0 0 1440 400" preserveAspectRatio="none">
   <path 
     fill={isDarkMode ? 'rgb(226 232 240)' : 'rgb(71 85 105)'} 
     fillOpacity="1" 
