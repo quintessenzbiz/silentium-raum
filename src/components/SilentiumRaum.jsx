@@ -347,8 +347,8 @@ const SilentiumRaum = () => {
               rel="noopener noreferrer" 
               className={`inline-flex items-center ${isDarkMode ? 'text-[#FF79AB] hover:text-[#E66A97]' : 'text-[#FF79AB] hover:text-[#E66A97]'}`}
             >
-              Quintessenz brand
-              <ExternalLink className="ml-1 h-3 w-3" />
+              Quintessenz
+              <ExternalLink className="ml-1 h-3 w-3" />brand
             </a>
           </p>
           <p className={`text-xs mt-1 font-light ${isDarkMode ? 'text-slate-400' : 'text-slate-600'}`}>
