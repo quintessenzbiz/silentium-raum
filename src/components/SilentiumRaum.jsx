@@ -134,7 +134,16 @@ const SilentiumRaum = () => {
 
   return (
     <div className={`min-h-screen p-4 pb-20 relative ${isDarkMode ? 'bg-slate-900' : 'bg-slate-50'}`}>
-      <Card className={`w-full max-w-2xl mx-auto mt-10 mb-16 ${isDarkMode ? 'bg-slate-800 text-white' : 'bg-white text-slate-900'}`}>
+      {/* Wellenhintergrund */}
+      <svg className="fixed inset-0 w-full h-full z-0 opacity-5" viewBox="0 0 1440 320" preserveAspectRatio="none">
+        <path 
+          fill={isDarkMode ? 'rgb(226 232 240)' : 'rgb(71 85 105)'} 
+          fillOpacity="1" 
+          d="M0,160L48,144C96,128,192,96,288,106.7C384,117,480,171,576,165.3C672,160,768,96,864,80C960,64,1056,96,1152,106.7C1248,117,1344,107,1392,101.3L1440,96L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z">
+        </path>
+      </svg>
+
+      <Card className={`w-full max-w-2xl mx-auto mt-10 mb-16 relative z-10 ${isDarkMode ? 'bg-slate-800 text-white' : 'bg-white text-slate-900'}`}>
         <CardHeader className="space-y-4">
           <CardTitle className="text-center text-4xl font-light">SILENTIUM</CardTitle>
           <div className="space-y-2">
@@ -277,21 +286,23 @@ const SilentiumRaum = () => {
           </Button>
 
           {showArchivInfo && (
-            <Alert className={isDarkMode ? 'bg-slate-700 border-slate-600' : 'bg-white border-slate-200'}>
-              <AlertTitle className={`${isDarkMode ? 'text-white' : 'text-slate-900'} font-light`}>
-                Silentium Newsletter Archive
-              </AlertTitle>
-              <AlertDescription className={`${isDarkMode ? 'text-slate-200' : 'text-slate-700'} font-light`}>
-                <p className="mt-2">The newsletter will be discontinued as of 01.01.2025. Secure now the complete collection of all 15 newsletters as a digital archive.</p>
-                <Button 
-                  className={`w-full mt-4 ${getButtonClass(false)}`}
-                  onClick={() => window.open('https://subscribepage.io/gPh3CX', '_blank')}
-                >
-                  <span className="font-light">Purchase Newsletter Collection</span>
-                  <ExternalLink className="ml-2 h-4 w-4" />
-                </Button>
-              </AlertDescription>
-            </Alert>
+            <div className="flex justify-center">
+              <Alert className={`max-w-xl w-full ${isDarkMode ? 'bg-slate-700 border-slate-600' : 'bg-white border-slate-200'}`}>
+                <AlertTitle className={`${isDarkMode ? 'text-white' : 'text-slate-900'} font-light text-center`}>
+                  Silentium Newsletter Archive
+                </AlertTitle>
+                <AlertDescription className={`${isDarkMode ? 'text-slate-200' : 'text-slate-700'} font-light text-center`}>
+                  <p className="mt-2">The newsletter will be discontinued as of 01.01.2025. Secure now the complete collection of all 15 newsletters as a digital archive.</p>
+                  <Button 
+                    className={`w-full mt-4 ${getButtonClass(false)}`}
+                    onClick={() => window.open('https://subscribepage.io/gPh3CX', '_blank')}
+                  >
+                    <span className="font-light">Purchase Newsletter Collection</span>
+                    <ExternalLink className="ml-2 h-4 w-4" />
+                  </Button>
+                </AlertDescription>
+              </Alert>
+            </div>
           )}
 
           <div className="text-center space-y-2 font-light">
@@ -306,8 +317,8 @@ const SilentiumRaum = () => {
         </CardContent>
       </Card>
 
-      {/* Ko-fi Button */}
-      <div className="flex justify-center w-full max-w-2xl mx-auto mb-8">
+  {/* Ko-fi Button */}
+  <div className="flex justify-center w-full max-w-2xl mx-auto mb-8">
         <a 
           href="https://ko-fi.com/opensilentium" 
           target="_blank" 
@@ -322,9 +333,9 @@ const SilentiumRaum = () => {
         </a>
       </div>
 
-      <footer className={`fixed bottom-0 left-0 right-0 p-4 ${isDarkMode ? 'bg-slate-900' : 'bg-slate-50'} border-t ${isDarkMode ? 'border-slate-700' : 'border-slate-200'}`}>
+      <footer className={`fixed bottom-0 left-0 right-0 p-4 ${isDarkMode ? 'bg-slate-900' : 'bg-slate-50'}`}>
         <div className="max-w-2xl mx-auto text-center">
-          <p className="text-sm font-light">
+          <p className={`text-sm font-light ${isDarkMode ? 'text-slate-400' : 'text-slate-600'}`}>
             Silentium is a brand by{' '}
             <a 
               href="https://www.quintessenz.biz" 
