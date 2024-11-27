@@ -136,10 +136,10 @@ const SilentiumRaum = () => {
     <div className={`min-h-screen p-4 pb-20 relative ${isDarkMode ? 'bg-slate-900' : 'bg-slate-50'}`}>
       <Card className={`w-full max-w-2xl mx-auto mt-10 mb-16 ${isDarkMode ? 'bg-slate-800 text-white' : 'bg-white text-slate-900'}`}>
         <CardHeader className="space-y-4">
-          <CardTitle className="text-center text-4xl font-normal">SILENTIUM</CardTitle>
+          <CardTitle className="text-center text-4xl font-light">SILENTIUM</CardTitle>
           <div className="space-y-2">
-            <p className="text-center text-xl font-normal">Open Space of Silence, Peace and Inner Harmony</p>
-            <p className="text-center text-md font-light opacity-85">A peaceful place for Meditation, Relaxation and Deep Grounding!</p>
+            <p className="text-center text-xl font-light">Open Space of Silence, Peace and Inner Harmony</p>
+            <p className="text-center text-md font-extralight opacity-85">A peaceful place for Meditation, Relaxation and Deep Grounding!</p>
           </div>
         </CardHeader>
         <CardContent className="space-y-6">
@@ -207,7 +207,7 @@ const SilentiumRaum = () => {
                   >
                     <div className="text-center">
                       <IconComponent className="h-6 w-6 mx-auto mb-2" />
-                      <div className="text-sm">{w.name}</div>
+                      <div className="text-sm font-light">{w.name}</div>
                     </div>
                   </Button>
                   <Button
@@ -228,7 +228,7 @@ const SilentiumRaum = () => {
             >
               <div className="text-center">
                 <Ban className="h-6 w-6 mx-auto mb-2" />
-                <div className="text-sm">No Frequency</div>
+                <div className="text-sm font-light">No Frequency</div>
               </div>
             </Button>
             
@@ -239,14 +239,14 @@ const SilentiumRaum = () => {
                 className={getButtonClass(soundType === freq.freq)}
               >
                 <div className="text-center">
-                  <div className="font-bold">{freq.freq}Hz</div>
-                  <div className="text-sm font-normal">{freq.name}</div>
+                  <div className="font-light">{freq.freq}Hz</div>
+                  <div className="text-sm font-light">{freq.name}</div>
                 </div>
               </Button>
             ))}
           </div>
 
-          <div className="text-center text-4xl font-mono">
+          <div className="text-center text-4xl font-light">
             {formatTime(timer)}
           </div>
 
@@ -255,7 +255,7 @@ const SilentiumRaum = () => {
               onClick={() => setIsActive(!isActive)}
               className={`px-8 ${getButtonClass(isActive)}`}
             >
-              {isActive ? 'Pause' : 'Start'}
+              <span className="font-light">{isActive ? 'Pause' : 'Start'}</span>
             </Button>
             <Button
               onClick={() => {
@@ -264,7 +264,7 @@ const SilentiumRaum = () => {
               }}
               className={getButtonClass(false)}
             >
-              Reset
+              <span className="font-light">Reset</span>
             </Button>
           </div>
 
@@ -273,28 +273,28 @@ const SilentiumRaum = () => {
             className={getButtonClass(showArchivInfo)}
           >
             <BookOpen className="mr-2 h-4 w-4" />
-            Silentium Newsletter Archive
+            <span className="font-light">Silentium Newsletter Archive</span>
           </Button>
 
           {showArchivInfo && (
             <Alert className={isDarkMode ? 'bg-slate-700 border-slate-600' : 'bg-white border-slate-200'}>
-              <AlertTitle className={isDarkMode ? 'text-white' : 'text-slate-900'}>
+              <AlertTitle className={`${isDarkMode ? 'text-white' : 'text-slate-900'} font-light`}>
                 Silentium Newsletter Archive
               </AlertTitle>
-              <AlertDescription className={isDarkMode ? 'text-slate-200' : 'text-slate-700'}>
+              <AlertDescription className={`${isDarkMode ? 'text-slate-200' : 'text-slate-700'} font-light`}>
                 <p className="mt-2">The newsletter will be discontinued as of 01.01.2025. Secure now the complete collection of all 15 newsletters as a digital archive.</p>
                 <Button 
                   className={`w-full mt-4 ${getButtonClass(false)}`}
                   onClick={() => window.open('https://subscribepage.io/gPh3CX', '_blank')}
                 >
-                  Purchase Newsletter Collection
+                  <span className="font-light">Purchase Newsletter Collection</span>
                   <ExternalLink className="ml-2 h-4 w-4" />
                 </Button>
               </AlertDescription>
             </Alert>
           )}
 
-          <div className="text-center space-y-2">
+          <div className="text-center space-y-2 font-light">
             <p>Current Frequency: {soundType === 'none' ? 'None' : `${soundType}Hz`}</p>
             <p>Waveform: {waveforms.find(w => w.type === waveform)?.name}</p>
             {soundType !== 'none' && (
@@ -306,9 +306,25 @@ const SilentiumRaum = () => {
         </CardContent>
       </Card>
 
-      <footer className={`fixed bottom-0 left-0 right-0 p-4 ${isDarkMode ? 'bg-slate-800 text-white' : 'bg-white text-slate-900'} border-t ${isDarkMode ? 'border-slate-700' : 'border-slate-200'}`}>
+      {/* Ko-fi Button */}
+      <div className="flex justify-center w-full max-w-2xl mx-auto mb-8">
+        <a 
+          href="https://ko-fi.com/opensilentium" 
+          target="_blank" 
+          rel="noopener noreferrer" 
+          className={`inline-flex items-center px-6 py-3 rounded-md ${
+            isDarkMode 
+              ? 'bg-blue-600 text-white hover:bg-blue-700' 
+              : 'bg-blue-500 text-white hover:bg-blue-600'
+          }`}
+        >
+          <span className="font-light">Support on Ko-fi</span>
+        </a>
+      </div>
+
+      <footer className={`fixed bottom-0 left-0 right-0 p-4 ${isDarkMode ? 'bg-slate-900' : 'bg-slate-50'} border-t ${isDarkMode ? 'border-slate-700' : 'border-slate-200'}`}>
         <div className="max-w-2xl mx-auto text-center">
-          <p className="text-sm">
+          <p className="text-sm font-light">
             Silentium is a brand by{' '}
             <a 
               href="https://www.quintessenz.biz" 
@@ -320,21 +336,7 @@ const SilentiumRaum = () => {
               <ExternalLink className="ml-1 h-3 w-3" />
             </a>
           </p>
-          <div className="mt-2 mb-2">
-            <a 
-              href="https://ko-fi.com/opensilentium" 
-              target="_blank" 
-              rel="noopener noreferrer" 
-              className={`inline-flex items-center px-4 py-2 rounded-md ${
-                isDarkMode 
-                  ? 'bg-blue-600 text-white hover:bg-blue-700' 
-                  : 'bg-blue-500 text-white hover:bg-blue-600'
-              }`}
-            >
-              Support on Ko-fi
-            </a>
-          </div>
-          <p className={`text-xs mt-1 ${isDarkMode ? 'text-slate-400' : 'text-slate-600'}`}>
+          <p className={`text-xs mt-1 font-light ${isDarkMode ? 'text-slate-400' : 'text-slate-600'}`}>
             © {new Date().getFullYear()} Quintessenz. All rights reserved.
           </p>
         </div>
