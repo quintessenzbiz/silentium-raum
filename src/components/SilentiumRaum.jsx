@@ -136,7 +136,7 @@ const SilentiumRaum = () => {
     <div className={`min-h-screen p-4 pb-20 relative ${isDarkMode ? 'bg-slate-900' : 'bg-slate-50'}`}>
 
 {/* Wellenhintergrund */}
-<svg className="fixed inset-0 w-full h-full z-0 opacity-5" viewBox="0 0 1440 400" preserveAspectRatio="none">
+<svg className="fixed inset-0 w-full h-full z-10 opacity-5" viewBox="0 0 1440 320" preserveAspectRatio="none">
   <path 
     fill={isDarkMode ? 'rgb(226 232 240)' : 'rgb(71 85 105)'} 
     fillOpacity="1" 
@@ -323,21 +323,17 @@ const SilentiumRaum = () => {
 
   {/* Ko-fi Button */}
   <div className="flex justify-center w-full max-w-2xl mx-auto mb-8">
-        <a 
-          href="https://ko-fi.com/opensilentium" 
-          target="_blank" 
-          rel="noopener noreferrer" 
-          className={`inline-flex items-center px-6 py-3 rounded-md ${
-            isDarkMode 
-              ? 'bg-[#FF79AB] text-white hover:bg-[#E66A97]' 
-              : 'bg-[#FF79AB] text-white hover:bg-[#E66A97]'
-          }`}
-        >
+  <a 
+  href="https://ko-fi.com/opensilentium"
+  target="_blank"
+  rel="noopener noreferrer"
+  className={`inline-flex items-center px-6 py-3 rounded-md bg-[#FF79AB] text-white hover:bg-[#E66A97] z-20 relative`}
+>
           <span className="font-light">Support on Ko-fi</span>
         </a>
       </div>
 
-      <footer className={`fixed bottom-0 left-0 right-0 p-4 ${isDarkMode ? 'bg-slate-900' : 'bg-slate-50'}`}>
+      <footer className={`fixed bottom-0 left-0 right-0 p-4 ${isDarkMode ? 'bg-transparent' : 'bg-transparent'} z-20`}>
         <div className="max-w-2xl mx-auto text-center">
           <p className={`text-sm font-light ${isDarkMode ? 'text-slate-400' : 'text-slate-600'}`}>
             Silentium is a Quintessenz Brand |  {' '}
