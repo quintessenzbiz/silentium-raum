@@ -125,8 +125,8 @@ const SilentiumRaum = () => {
     }
     return isActive 
       ? isDarkMode 
-        ? 'bg-blue-600 text-white hover:bg-blue-700' 
-        : 'bg-blue-500 text-white hover:bg-blue-600'
+        ? 'bg-[#FF79AB] text-white hover:bg-[#E66A97]' // Hier geändert
+        : 'bg-[#FF79AB] text-white hover:bg-[#E66A97]' // Hier geändert
       : isDarkMode
         ? 'bg-slate-700 text-white hover:bg-slate-600'
         : 'bg-white text-slate-900 hover:bg-slate-100 border border-slate-200';
@@ -134,14 +134,15 @@ const SilentiumRaum = () => {
 
   return (
     <div className={`min-h-screen p-4 pb-20 relative ${isDarkMode ? 'bg-slate-900' : 'bg-slate-50'}`}>
-      {/* Wellenhintergrund */}
-      <svg className="fixed inset-0 w-full h-full z-0 opacity-5" viewBox="0 0 1440 320" preserveAspectRatio="none">
-        <path 
-          fill={isDarkMode ? 'rgb(226 232 240)' : 'rgb(71 85 105)'} 
-          fillOpacity="1" 
-          d="M0,160L48,144C96,128,192,96,288,106.7C384,117,480,171,576,165.3C672,160,768,96,864,80C960,64,1056,96,1152,106.7C1248,117,1344,107,1392,101.3L1440,96L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z">
-        </path>
-      </svg>
+{/* Wellenhintergrund */}
+<svg className="fixed inset-0 w-full h-full z-0 opacity-5" viewBox="0 0 1440 320" preserveAspectRatio="none">
+  <path 
+    fill={isDarkMode ? 'rgb(226 232 240)' : 'rgb(71 85 105)'} 
+    fillOpacity="1" 
+    d="M0,32L48,37.3C96,43,192,53,288,80C384,107,480,149,576,154.7C672,160,768,128,864,112C960,96,1056,96,1152,106.7C1248,117,1344,139,1392,149.3L1440,160L1440,400L1392,400C1344,400,1248,400,1152,400C1056,400,960,400,864,400C768,400,672,400,576,400C480,400,384,400,288,400C192,400,96,400,48,400L0,400Z"
+  >
+  </path>
+</svg>
 
       <Card className={`w-full max-w-2xl mx-auto mt-10 mb-16 relative z-10 ${isDarkMode ? 'bg-slate-800 text-white' : 'bg-white text-slate-900'}`}>
         <CardHeader className="space-y-4">
@@ -277,13 +278,15 @@ const SilentiumRaum = () => {
             </Button>
           </div>
 
-          <Button 
-            onClick={() => setShowArchivInfo(!showArchivInfo)}
-            className={getButtonClass(showArchivInfo)}
-          >
-            <BookOpen className="mr-2 h-4 w-4" />
-            <span className="font-light">Silentium Newsletter Archive</span>
-          </Button>
+          <div className="flex justify-center">
+  <Button 
+    onClick={() => setShowArchivInfo(!showArchivInfo)}
+    className={`${getButtonClass(showArchivInfo)} px-8`}
+  >
+    <BookOpen className="mr-2 h-4 w-4" />
+    <span className="font-light">Silentium Newsletter Archive</span>
+  </Button>
+</div>
 
           {showArchivInfo && (
             <div className="flex justify-center">
@@ -325,8 +328,8 @@ const SilentiumRaum = () => {
           rel="noopener noreferrer" 
           className={`inline-flex items-center px-6 py-3 rounded-md ${
             isDarkMode 
-              ? 'bg-blue-600 text-white hover:bg-blue-700' 
-              : 'bg-blue-500 text-white hover:bg-blue-600'
+              ? 'bg-[#FF79AB] text-white hover:bg-[#E66A97]' 
+              : 'bg-[#FF79AB] text-white hover:bg-[#E66A97]'
           }`}
         >
           <span className="font-light">Support on Ko-fi</span>
@@ -341,7 +344,7 @@ const SilentiumRaum = () => {
               href="https://www.quintessenz.biz" 
               target="_blank" 
               rel="noopener noreferrer" 
-              className={`inline-flex items-center ${isDarkMode ? 'text-blue-400 hover:text-blue-300' : 'text-blue-600 hover:text-blue-800'}`}
+              className={`inline-flex items-center ${isDarkMode ? 'text-[#FF79AB] hover:text-[#E66A97]' : 'text-[#FF79AB] hover:text-[#E66A97]'}`}
             >
               Quintessenz
               <ExternalLink className="ml-1 h-3 w-3" />
