@@ -340,14 +340,14 @@ const SilentiumRaum = () => {
       <footer className={`fixed bottom-0 left-0 right-0 p-4 ${isDarkMode ? 'bg-slate-900' : 'bg-slate-50'}`}>
         <div className="max-w-2xl mx-auto text-center">
           <p className={`text-sm font-light ${isDarkMode ? 'text-slate-400' : 'text-slate-600'}`}>
-            Silentium is a brand by{' '}
+            Silentium is a {' '}
             <a 
               href="https://www.quintessenz.biz" 
               target="_blank" 
               rel="noopener noreferrer" 
               className={`inline-flex items-center ${isDarkMode ? 'text-[#FF79AB] hover:text-[#E66A97]' : 'text-[#FF79AB] hover:text-[#E66A97]'}`}
             >
-              Quintessenz
+              Quintessenz brand
               <ExternalLink className="ml-1 h-3 w-3" />
             </a>
           </p>
